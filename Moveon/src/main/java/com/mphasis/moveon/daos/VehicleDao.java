@@ -10,4 +10,5 @@ public interface VehicleDao
     public void updateVehicle(Vehicle vehicle);
     public void deleteVehicle(int vehicle_id);
     public List<Vehicle> getAll();
+    public List<Vehicle> getAllByType(String vehicle_Type);
 }
