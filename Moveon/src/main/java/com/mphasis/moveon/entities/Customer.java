@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -19,17 +20,19 @@ public class Customer
 	private String customer_Name;
 	private String email;
 	private String password;
+	private String gender;
+	private String dob;
+	private long contact_Num;
+	private String address;
 	
 	@OneToMany(mappedBy="customer")
 	List<Passenger> passenger;
 	
 	@OneToOne
+	@JoinColumn(name="booking_Id")
 	private Booking_Details booking_Details;
 	
-	private String gender;
-	private String dob;
-	private long contact_Num;
-	private String address;
+	
 	
 	public void setBooking_Details(Booking_Details booking_Details) {
 		this.booking_Details = booking_Details;

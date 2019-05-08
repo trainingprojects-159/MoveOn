@@ -18,6 +18,7 @@ public class Booking_Details
 	private Customer customer;
 	
 	@ManyToOne
+	@JoinColumn(name="admin_Id")
 	private Admin admin;
 	
 	

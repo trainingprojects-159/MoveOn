@@ -15,6 +15,9 @@ public class Admin
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	private int admin_Id;
+	private String admin_name;
+	private String email;
+	private String password; 
 	
 	
 	@OneToMany(mappedBy="admin")
@@ -36,9 +39,7 @@ public class Admin
 	@OneToMany(mappedBy="admin")
 	private List<Booking_Details> booking_details;
 	
-	private String admin_name;
-	private String email;
-	private String password; 
+	
 	
 	
 	public int getAdmin_Id() {
