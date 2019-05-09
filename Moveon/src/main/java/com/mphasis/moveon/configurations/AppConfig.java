@@ -21,7 +21,7 @@ import com.mphasis.moveon.entities.Booking_Details;
 import com.mphasis.moveon.entities.Customer;
 import com.mphasis.moveon.entities.Driver;
 import com.mphasis.moveon.entities.Location;
-import com.mphasis.moveon.entities.Login;
+
 import com.mphasis.moveon.entities.Passenger;
 import com.mphasis.moveon.entities.Route;
 import com.mphasis.moveon.entities.Schedule;
@@ -61,7 +61,7 @@ public class AppConfig {
 		sessionFactory.setAnnotatedClasses(Admin.class);
 		sessionFactory.setAnnotatedClasses(Booking_Details.class);
 		sessionFactory.setAnnotatedClasses(Driver.class);
-		sessionFactory.setAnnotatedClasses(Login.class);
+		
 		sessionFactory.setAnnotatedClasses(Passenger.class);
 		sessionFactory.setAnnotatedClasses(Route.class);
 		sessionFactory.setAnnotatedClasses(Location.class);

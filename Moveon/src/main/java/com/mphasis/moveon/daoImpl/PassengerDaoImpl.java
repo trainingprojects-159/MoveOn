@@ -10,12 +10,13 @@ import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.mphasis.moveon.daos.DriverDao;
-import com.mphasis.moveon.entities.Driver;
+import com.mphasis.moveon.daos.PassengerDao;
+import com.mphasis.moveon.entities.Passenger;
+
 
 @Repository
 
-public class DriverDaoImpl implements DriverDao {
+public class PassengerDaoImpl implements PassengerDao{
 	
 	@Autowired
 	SessionFactory sessionFactory;
@@ -24,38 +25,41 @@ public class DriverDaoImpl implements DriverDao {
 		this.sessionFactory = sessionFactory;
 	}
 
-	public void insertDriver(Driver driver) {
+	public void insertPassenger(Passenger passenger) {
 		Session session=sessionFactory.openSession();
 		Transaction tr=session.beginTransaction();
-		session.save(driver);
+		session.save(passenger);
 		tr.commit();
+		
 	}
 
-	public void updateDriver(Driver driver) {
+	public void updatePassenger(Passenger passenger) {
 		Session session=sessionFactory.openSession();
 		Transaction tr=session.beginTransaction();
-		session.update(driver);
+		session.update(passenger);
 		tr.commit();
 		session.close();
 		
 	}
 
-	public void deleteDriver(int driver_Id) {
+	public void deletePassenger(String id_Proof) {
 		Session session=sessionFactory.openSession();
 		Transaction tr=session.beginTransaction();
-		Driver driver=session.get(Driver.class, driver_Id);
-		session.delete(driver);
+		Passenger passengers=(Passenger)session.get(Passenger.class, id_Proof);
+		session.delete(id_Proof);
 		tr.commit();
-	}
-
-	public List<Driver> getAll() {
-		Session session=sessionFactory.openSession();
-		Transaction tr=session.beginTransaction();
-		List<Driver> drivers=session.createCriteria(Driver.class).list();
-		tr.commit();
-		return drivers;
+		
 	}
 	
+	public List<Passenger> getAllPassenger() {
+		Session session=sessionFactory.openSession();
+		Transaction tr=session.beginTransaction();
+		List<Passenger> passengers=session.createCriteria(Passenger.class).list();
+		tr.commit();
+		return passengers;
+		
+	}
+
 	
 
 }

@@ -13,7 +13,7 @@ public class Location {
 	
 	private String location_Id;
 	private String location_Name;
-	private String stop;
+	
 	
 	@ManyToOne
 	@JoinColumn(name="admin_Id")
@@ -35,11 +35,6 @@ public class Location {
 	public void setLocation_Name(String location_Name) {
 		this.location_Name = location_Name;
 	}
-	public String getStop() {
-		return stop;
-	}
-	public void setStop(String stop) {
-		this.stop = stop;
-	}
+	
 
 }
