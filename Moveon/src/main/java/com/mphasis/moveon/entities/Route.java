@@ -14,12 +14,20 @@ public class Route
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	private int route_Id;
-	private String location_Id;
+	
+	@OneToOne
+	@JoinColumn(name="location_Id")
+	private Location location;
+	
+
+	public Admin getAdmin() {
+		return admin;
+	}
 	private String source;
 	private String destination;
 	private int distance;
 	private int duration;
-	private double fare;
+	
 	
 	@ManyToOne
 	@JoinColumn(name="admin_Id")
@@ -35,12 +43,7 @@ public class Route
 	public void setRoute_Id(int route_Id) {
 		this.route_Id = route_Id;
 	}
-	public String getLocation_Id() {
-		return location_Id;
-	}
-	public void setLocation_Id(String location_Id) {
-		this.location_Id = location_Id;
-	}
+	
 	public String getSource() {
 		return source;
 	}
@@ -65,12 +68,14 @@ public class Route
 	public void setDuration(int duration) {
 		this.duration = duration;
 	}
-	public double getFare() {
-		return fare;
-	}
-	public void setFare(double fare) {
-		this.fare = fare;
-	}
 	
+	public Location getLocation() {
+		return location;
+	}
+
+	public void setLocation(Location location) {
+		this.location = location;
+	}
+
 	
 }

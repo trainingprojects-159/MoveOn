@@ -6,9 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+
 
 @Entity
 public class Customer 
@@ -28,8 +27,7 @@ public class Customer
 	@OneToMany(mappedBy="customer")
 	List<Passenger> passenger;
 	
-	@OneToOne
-	@JoinColumn(name="booking_Id")
+	@OneToMany(mappedBy="customer")
 	private Booking_Details booking_Details;
 	
 	
@@ -93,8 +91,4 @@ public class Customer
 		this.address = address;
 	}
 	
-
-	
-	
-
 }

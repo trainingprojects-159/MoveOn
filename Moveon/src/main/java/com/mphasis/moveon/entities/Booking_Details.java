@@ -14,7 +14,8 @@ public class Booking_Details
 	@Id
 	private String booking_Id;
 	
-	@OneToOne
+	@ManyToOne
+	@JoinColumn(name="customer_Id")
 	private Customer customer;
 	
 	@ManyToOne

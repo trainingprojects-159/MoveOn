@@ -18,7 +18,8 @@ public class Vehicle
 	private String vehicle_Type;
 	private int seat_Capacity;
 	private String vehicle_Num;
-	private int fare;
+	private double fare;
+	
 	@ManyToOne
 	@JoinColumn(name="admin_Id")
 	private Admin admin;
@@ -58,10 +59,10 @@ public class Vehicle
 	public void setVehicle_Num(String vehicle_Num) {
 		this.vehicle_Num = vehicle_Num;
 	}
-	public int getFare() {
+	public double getFare() {
 		return fare;
 	}
-	public void setFare(int fare) {
+	public void setFare(double fare) {
 		this.fare = fare;
 	}
 

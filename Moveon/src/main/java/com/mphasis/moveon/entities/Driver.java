@@ -18,6 +18,7 @@ public class Driver
 	@ManyToOne
 	@JoinColumn(name="admin_Id")
 	private Admin admin;
+	
 	private String driver_Name;
 	private String license_Num;
 	private long contact_Num;
