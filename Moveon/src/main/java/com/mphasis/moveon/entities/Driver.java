@@ -8,12 +8,24 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
+
+import com.mphasis.moveon.util.StringPrefixedSequenceIdGenerator;
+
 @Entity
 public class Driver 
 {
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE)
-	private int driver_Id;
+	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="driver_seq")
+	 @GenericGenerator(
+		        name = "driver_seq", 
+		        strategy = "com.mphasis.moveon.util.StringPrefixedSequenceIdGenerator", 
+		        parameters = {
+		            @Parameter(name = StringPrefixedSequenceIdGenerator.INCREMENT_PARAM, value = "4"),
+		            @Parameter(name = StringPrefixedSequenceIdGenerator.VALUE_PREFIX_PARAMETER, value = "DR"),
+		            @Parameter(name = StringPrefixedSequenceIdGenerator.NUMBER_FORMAT_PARAMETER, value = "%03d") })
+	private String driver_Id;
 	
 	@ManyToOne
 	@JoinColumn(name="admin_Id")
@@ -30,11 +42,11 @@ public class Driver
 	@JoinColumn(name="schedule_Id")
 	private Schedule schedule;
 
-	public int getDriver_Id() {
+	public String getDriver_Id() {
 		return driver_Id;
 	}
 
-	public void setDriver_Id(int driver_Id) {
+	public void setDriver_Id(String driver_Id) {
 		this.driver_Id = driver_Id;
 	}
 

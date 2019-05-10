@@ -8,10 +8,23 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
+
+import com.mphasis.moveon.util.StringPrefixedSequenceIdGenerator;
+
 @Entity
 public class Booking_Details 
 {
 	@Id
+	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="book_seq")
+	 @GenericGenerator(
+		        name = "book_seq", 
+		        strategy = "com.mphasis.moveon.util.StringPrefixedSequenceIdGenerator", 
+		        parameters = {
+		            @Parameter(name = StringPrefixedSequenceIdGenerator.INCREMENT_PARAM, value = "4"),
+		            @Parameter(name = StringPrefixedSequenceIdGenerator.VALUE_PREFIX_PARAMETER, value = "BO"),
+		            @Parameter(name = StringPrefixedSequenceIdGenerator.NUMBER_FORMAT_PARAMETER, value = "%03d") })
 	private String booking_Id;
 	
 	@ManyToOne

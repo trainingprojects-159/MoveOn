@@ -15,6 +15,8 @@ public class Passenger
 	private String passenger_Name;
 	private String gender;
 	private int age;
+	private String source;
+	private String destination;
 	
 	@ManyToOne
 	@JoinColumn(name="customer_Id")

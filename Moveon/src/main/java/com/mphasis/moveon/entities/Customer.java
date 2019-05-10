@@ -8,13 +8,25 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
+
+import com.mphasis.moveon.util.StringPrefixedSequenceIdGenerator;
+
 
 @Entity
 public class Customer 
 {
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE)
-	private int customer_Id;
+	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="customer_seq")
+	 @GenericGenerator(
+		        name = "customer_seq", 
+		        strategy = "com.mphasis.moveon.util.StringPrefixedSequenceIdGenerator", 
+		        parameters = {
+		            @Parameter(name = StringPrefixedSequenceIdGenerator.INCREMENT_PARAM, value = "4"),
+		            @Parameter(name = StringPrefixedSequenceIdGenerator.VALUE_PREFIX_PARAMETER, value = "CU"),
+		            @Parameter(name = StringPrefixedSequenceIdGenerator.NUMBER_FORMAT_PARAMETER, value = "%03d") })
+	private String customer_Id;
 	
 	private String customer_Name;
 	private String email;
@@ -42,10 +54,10 @@ public class Customer
 		this.passenger = passenger;
 	}
 	
-	public int getCustomer_Id() {
+	public String getCustomer_Id() {
 		return customer_Id;
 	}
-	public void setCustomer_Id(int customer_Id) {
+	public void setCustomer_Id(String customer_Id) {
 		this.customer_Id = customer_Id;
 	}
 	public String getCustomer_Name() {

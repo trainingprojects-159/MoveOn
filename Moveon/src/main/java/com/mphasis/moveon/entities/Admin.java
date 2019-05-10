@@ -2,19 +2,32 @@ package com.mphasis.moveon.entities;
 
 import java.util.List;
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+
 import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
+
+import com.mphasis.moveon.util.StringPrefixedSequenceIdGenerator;
 
 @Entity
 public class Admin 
 {
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE)
-	private int admin_Id;
+	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="admin_seq")
+	 @GenericGenerator(
+		        name = "admin_seq", 
+		        strategy = "com.mphasis.moveon.util.StringPrefixedSequenceIdGenerator", 
+		        parameters = {
+		            @Parameter(name = StringPrefixedSequenceIdGenerator.INCREMENT_PARAM, value = "4"),
+		            @Parameter(name = StringPrefixedSequenceIdGenerator.VALUE_PREFIX_PARAMETER, value = "AD"),
+		            @Parameter(name = StringPrefixedSequenceIdGenerator.NUMBER_FORMAT_PARAMETER, value = "%03d") })
+	private String admin_Id;
 	private String admin_name;
 	private String email;
 	private String password; 
@@ -42,10 +55,10 @@ public class Admin
 	
 	
 	
-	public int getAdmin_Id() {
+	public String getAdmin_Id() {
 		return admin_Id;
 	}
-	public void setAdmin_Id(int admin_Id) {
+	public void setAdmin_Id(String admin_Id) {
 		this.admin_Id = admin_Id;
 	}
 	public String getAdmin_name() {

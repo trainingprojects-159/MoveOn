@@ -1,6 +1,10 @@
 package com.mphasis.moveon.entities;
 
 import javax.persistence.Entity;
+import org.hibernate.annotations.*;
+
+import com.mphasis.moveon.util.StringPrefixedSequenceIdGenerator;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,8 +16,15 @@ import javax.persistence.ManyToOne;
 public class Vehicle 
 {
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE)
-	private int vehicle_Id;
+	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="vehicle_seq")
+	 @GenericGenerator(
+		        name = "vehicle_seq", 
+		        strategy = "com.mphasis.moveon.util.StringPrefixedSequenceIdGenerator", 
+		        parameters = {
+		            @Parameter(name = StringPrefixedSequenceIdGenerator.INCREMENT_PARAM, value = "4"),
+		            @Parameter(name = StringPrefixedSequenceIdGenerator.VALUE_PREFIX_PARAMETER, value = "VI"),
+		            @Parameter(name = StringPrefixedSequenceIdGenerator.NUMBER_FORMAT_PARAMETER, value = "%03d") })
+	private String vehicle_Id;
 	private String vehicle_Name;
 	private String vehicle_Type;
 	private int seat_Capacity;
@@ -29,10 +40,10 @@ public class Vehicle
 		this.admin = admin;
 	}
 	
-	public int getVehicle_Id() {
+	public String getVehicle_Id() {
 		return vehicle_Id;
 	}
-	public void setVehicle_Id(int vehicle_Id) {
+	public void setVehicle_Id(String vehicle_Id) {
 		this.vehicle_Id = vehicle_Id;
 	}
 	public String getVehicle_Name() {
