@@ -24,10 +24,10 @@ public class Customer
 	private long contact_Num;
 	private String address;
 	
-	@OneToMany(mappedBy="customer")
+	@OneToMany
 	List<Passenger> passenger;
 	
-	@OneToMany(mappedBy="customer")
+	@OneToMany
 	private Booking_Details booking_Details;
 	
 	

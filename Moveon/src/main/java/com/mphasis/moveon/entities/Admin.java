@@ -20,23 +20,23 @@ public class Admin
 	private String password; 
 	
 	
-	@OneToMany(mappedBy="admin")
+	@OneToMany
 	private List<Route> route;
 	
-	@OneToMany(mappedBy="admin")
+	@OneToMany
 	private List<Vehicle> vehicle;
 	
 	
-	@OneToMany(mappedBy="admin")
+	@OneToMany
 	private List<Driver> driver;
 	
-	@OneToMany(mappedBy="admin")
+	@OneToMany
 	private List<Location> location;
 	
-	@OneToMany(mappedBy="admin")
+	@OneToMany
 	private List<Schedule> schedule;
 	
-	@OneToMany(mappedBy="admin")
+	@OneToMany
 	private List<Booking_Details> booking_details;
 	
 	
