@@ -11,5 +11,5 @@ public interface RouteDao
 	public void updateRoute(Route route);
 	public void deleteRoute(int route_Id);
     public List<Route> getAll();
-    public List<Vehicle> getAllBySourceAndDestination(String source,String destination);
+    public Vehicle getAllBySourceAndDestination(String source,String destination);
 }
