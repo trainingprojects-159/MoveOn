@@ -28,7 +28,7 @@ public class VehicleServiceImpl implements VehicleService {
 
 	}
 
-	public void removeVehicle(int vehicle_Id) {
+	public void removeVehicle(String vehicle_Id) {
 		vehicleDao.deleteVehicle(vehicle_Id);
 
 	}

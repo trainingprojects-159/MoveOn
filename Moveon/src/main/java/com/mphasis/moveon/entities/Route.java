@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -26,24 +27,29 @@ public class Route
 		            @Parameter(name = StringPrefixedSequenceIdGenerator.VALUE_PREFIX_PARAMETER, value = "RO"),
 		            @Parameter(name = StringPrefixedSequenceIdGenerator.NUMBER_FORMAT_PARAMETER, value = "%03d") })
 	private String route_Id;
-	
-	@OneToOne
-	@JoinColumn(name="location_Id")
-	private Location location;
-	
-
-	public Admin getAdmin() {
-		return admin;
-	}
 	private String source;
 	private String destination;
 	private int distance;
 	private int duration;
 	
+	@OneToOne
+	@JoinColumn(name="location_Id")
+	private Location location;
+	
+	@OneToMany
+	private Vehicle vehicle;
 	
 	@ManyToOne
 	@JoinColumn(name="admin_Id")
 	private Admin admin;
+	
+	public void setVehicle(Vehicle vehicle) {
+		this.vehicle = vehicle;
+	}
+
+	public Admin getAdmin() {
+		return admin;
+	}
 	
 	public void setAdmin(Admin admin) {
 		this.admin = admin;

@@ -7,7 +7,7 @@ import com.mphasis.moveon.entities.Driver;
 public interface DriverService {
 	public void addDriver(Driver driver);
 	public void editDriver(Driver driver);
-	public void removeDriver(int driver_Id);
+	public void removeDriver(String driver_Id);
 	public List<Driver> getAll();
 
 }

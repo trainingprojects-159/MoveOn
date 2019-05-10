@@ -51,7 +51,7 @@ public class DriverDaoImpl implements DriverDao {
 	public List<Driver> getAll() {
 		Session session=sessionFactory.openSession();
 		Transaction tr=session.beginTransaction();
-		List<Driver> drivers=session.createCriteria(Driver.class).list();
+		List<Driver> drivers=session.createQuery("from Driver",Driver.class).list();
 		tr.commit();
 		return drivers;
 	}

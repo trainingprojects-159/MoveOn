@@ -45,7 +45,7 @@ public class VehicleDaoImpl implements VehicleDao {
 
 	}
 
-	public void deleteVehicle(int vehicle_Id) {
+	public void deleteVehicle(String vehicle_Id) {
 		Session session=sessionFactory.openSession();
 		Transaction tr=session.beginTransaction();
 		Vehicle vehicle=session.get(Vehicle.class,vehicle_Id);
@@ -57,7 +57,7 @@ public class VehicleDaoImpl implements VehicleDao {
 	public List<Vehicle> getAll() {
 		Session session=sessionFactory.openSession();
 		Transaction tr=session.beginTransaction();
-		List<Vehicle> vehicles=session.createCriteria(Vehicle.class).list();
+		List<Vehicle> vehicles=session.createQuery("from Vehicle",Vehicle.class).list();
 		return vehicles;
 	}
 

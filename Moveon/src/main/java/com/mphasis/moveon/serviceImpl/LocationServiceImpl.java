@@ -25,7 +25,7 @@ public class LocationServiceImpl implements LocationService {
 		locationDao.insertLocation(location);
 	}	
 	
-	public void removeLocation(int id) {
+	public void removeLocation(String id) {
 		// TODO Auto-generated method stub
 		locationDao.deleteLocation(id);
 

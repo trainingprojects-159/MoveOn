@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.mphasis.moveon.daos.Booking_DetailsDao;
 import com.mphasis.moveon.entities.Booking_Details;
-import com.mphasis.moveon.services.Booking_DetailsService;
+import com.mphasis.moveon.service.Booking_DetailsService;
 
 @Service
 public class Booking_DetailsServiceImpl implements Booking_DetailsService 
@@ -34,6 +34,11 @@ public class Booking_DetailsServiceImpl implements Booking_DetailsService
 	public void removeBooking_Id(String booking_Id) 
 	{
 		booking_detailsDao.cancelByBooking_Id(booking_Id);
+	}
+
+	public void bookTicket(Booking_Details booking_Details) 
+	{
+		booking_detailsDao.book_Ticket(booking_Details);
 	}
 
 }

@@ -8,7 +8,7 @@ public interface DriverDao
 {
 	public void insertDriver(Driver driver);
 	public void updateDriver(Driver driver);
-	public void deleteDriver(int driver_Id);
+	public void deleteDriver(String driver_Id);
 	public List<Driver> getAll();
 
 }

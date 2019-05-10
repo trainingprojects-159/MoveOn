@@ -7,7 +7,7 @@ import com.mphasis.moveon.entities.Vehicle;
 public interface VehicleService {
 	 public void addVehicle(Vehicle vehicle);
 	    public void editVehicle(Vehicle vehicle);
-	    public void removeVehicle(int vehicle_Id);
+	    public void removeVehicle(String vehicle_Id);
 	    public List<Vehicle> getAll();
 	    public List<Vehicle> getAllByType(String vehicle_Type);
 }

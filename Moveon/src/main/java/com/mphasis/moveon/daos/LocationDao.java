@@ -8,7 +8,7 @@ public interface LocationDao
 {
 	public void insertLocation(Location location);
 	public void updateLocation(Location location);
-	public void deleteLocation(int location_Id);
+	public void deleteLocation(String location_Id);
 	public List<Location> getAll();
 	
 	

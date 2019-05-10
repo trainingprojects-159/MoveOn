@@ -9,7 +9,7 @@ public interface RouteDao
 {
 	public void insertRoute(Route route);
 	public void updateRoute(Route route);
-	public void deleteRoute(int route_Id);
+	public void deleteRoute(String route_Id);
     public List<Route> getAll();
-    public Vehicle getAllBySourceAndDestination(String source,String destination);
+    public List<Vehicle> getAllBySourceAndDestination(String source,String destination);
 }

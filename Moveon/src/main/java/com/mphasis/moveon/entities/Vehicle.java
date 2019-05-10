@@ -35,6 +35,13 @@ public class Vehicle
 	@JoinColumn(name="admin_Id")
 	private Admin admin;
 	
+	@ManyToOne
+	@JoinColumn(name="route_Id")
+	private Route route;
+
+	public void setRoute(Route route) {
+		this.route = route;
+	}
 
 	public void setAdmin(Admin admin) {
 		this.admin = admin;

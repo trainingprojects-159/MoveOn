@@ -17,6 +17,7 @@ public class Passenger
 	private int age;
 	private String source;
 	private String destination;
+	private String journey_Date;
 	
 	@ManyToOne
 	@JoinColumn(name="customer_Id")
@@ -58,6 +59,25 @@ public class Passenger
 	}
 	public void setId_proof_type(String id_proof_type) {
 		this.id_proof_type = id_proof_type;
+	}
+	
+	public String getSource() {
+		return source;
+	}
+	public void setSource(String source) {
+		this.source = source;
+	}
+	public String getDestination() {
+		return destination;
+	}
+	public void setDestination(String destination) {
+		this.destination = destination;
+	}
+	public String getJourney_Date() {
+		return journey_Date;
+	}
+	public void setJourney_Date(String journey_Date) {
+		this.journey_Date = journey_Date;
 	}
 	
 

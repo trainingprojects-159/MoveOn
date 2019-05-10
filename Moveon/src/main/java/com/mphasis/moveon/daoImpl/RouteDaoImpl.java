@@ -2,20 +2,13 @@ package com.mphasis.moveon.daoImpl;
 
 import java.util.List;
 
+import javax.persistence.TypedQuery;
 
-
-
-
-
-import org.hibernate.Criteria;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.Restrictions;
-
 import com.mphasis.moveon.daos.RouteDao;
 import com.mphasis.moveon.entities.Route;
 import com.mphasis.moveon.entities.Vehicle;
@@ -48,7 +41,7 @@ public class RouteDaoImpl implements RouteDao {
 
 	}
 
-	public void deleteRoute(int route_Id) {
+	public void deleteRoute(String route_Id) {
 		Session session=sessionFactory.openSession();
 		Transaction tr=session.beginTransaction();
 		Route route=session.get(Route.class,route_Id);
@@ -60,19 +53,21 @@ public class RouteDaoImpl implements RouteDao {
 	public List<Route> getAll() {
 		Session session=sessionFactory.openSession();
 		Transaction tr=session.beginTransaction();
-		List<Route> routes=session.createCriteria(Route.class).list();
+		List<Route> routes=session.createQuery("from Route",Route.class).list();
 		return routes;
 	}
 
-	public Vehicle getAllBySourceAndDestination(String source, String destination) {
+	public List<Vehicle> getAllBySourceAndDestination(String source, String destination) {
 		Session session = sessionFactory.openSession();
 		Transaction tr = session.beginTransaction();
-		Query query1=session.createSQLQuery("select vehicle_Id,vehicle_Name,vehicle_Type,seat_Capacity,vehicle_Num,fare where vehicle_Id = (select vehicle_Id from schedule where route_id = (select route_id from route where source=:source and destination=:destination");
+		TypedQuery<Vehicle> query1=session.createSQLQuery("select vehicle_Id,vehicle_Name,vehicle_Type,seat_Capacity,vehicle_Num,fare where vehicle_Id = (select vehicle_Id from schedule where route_id = (select route_id from route where source=:source and destination=:destination");
 		query1.setParameter("source", source);
 		query1.setParameter("destination", destination);
-        Vehicle vehicle=(Vehicle) query1.uniqueResult();
+       List<Vehicle> vehicle=query1.getResultList();
         tr.commit();
 		return vehicle;
 	}
+
+	
 
 }

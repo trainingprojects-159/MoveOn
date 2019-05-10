@@ -25,7 +25,7 @@ public class Booking_DetailsDaoImpl implements Booking_DetailsDao
 	{
 		Session session = sessionFactory.openSession();
 		Transaction tr = session.beginTransaction();
-		List<Booking_Details> book_det = session.createCriteria(Booking_Details.class).list();
+		List<Booking_Details> book_det = session.createQuery("from Booking_Details",Booking_Details.class).list();
 	    tr.commit();	
 		return book_det;
 	}
@@ -34,7 +34,7 @@ public class Booking_DetailsDaoImpl implements Booking_DetailsDao
 	{
 		Session session = sessionFactory.openSession();
 		Transaction tr = session.beginTransaction();
-		Booking_Details book_details = (Booking_Details) session.createCriteria(Booking_Details.class, booking_Id);
+		Booking_Details book_details = (Booking_Details) session.createQuery("from Booking_Details",Booking_Details.class, booking_Id);
 		tr.commit();
 		return book_details;
 	}
@@ -49,6 +49,14 @@ public class Booking_DetailsDaoImpl implements Booking_DetailsDao
 		tr.commit();
 		
 		
+	}
+
+	public void book_Ticket(Booking_Details booking_Details) 
+	{
+		Session session = sessionFactory.openSession();
+		Transaction tr = session.beginTransaction();
+		session.update(booking_Details);
+		tr.commit();
 	}
 
 }

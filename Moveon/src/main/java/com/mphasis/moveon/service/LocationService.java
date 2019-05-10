@@ -7,7 +7,7 @@ public interface LocationService {
 
 	public void addLocation(Location location);
 	public void editLocation(Location location);
-	public void removeLocation(int location_Id);
+	public void removeLocation(String location_Id);
 	public List<Location> getLocations();
 	
 }

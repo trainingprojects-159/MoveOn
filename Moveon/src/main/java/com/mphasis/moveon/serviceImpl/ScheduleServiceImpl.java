@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.mphasis.moveon.daos.ScheduleDao;
 import com.mphasis.moveon.entities.Schedule;
 import com.mphasis.moveon.entities.Vehicle;
-import com.mphasis.moveon.services.ScheduleService;
+import com.mphasis.moveon.service.ScheduleService;
 
 @Service
 public class ScheduleServiceImpl implements ScheduleService
@@ -37,10 +37,6 @@ public class ScheduleServiceImpl implements ScheduleService
 		return scheduleDao.getAll();
 	}
 
-	public List<Vehicle> getByRouteSchedule(String schedule_Date, String route_Id) 
-	{
-		
-		return scheduleDao.getByRouteSchedule(schedule_Date, route_Id);
-	}
+	
 
 }

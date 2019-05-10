@@ -2,6 +2,8 @@ package com.mphasis.moveon.daoImpl;
 
 import java.util.List;
 
+import javax.persistence.TypedQuery;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -47,28 +49,19 @@ public class ScheduleDaoImpl implements ScheduleDao
 	{
 		Session session = sessionFactory.openSession();
 		Transaction tr = session.beginTransaction();
-		List<Schedule> schedules = session.createCriteria(Schedule.class).list();
+		List<Schedule> schedules = session.createQuery("from Schedule",Schedule.class).list();
 		tr.commit();
 		return schedules;
 	}
 
 	public List<Vehicle> getByRouteSchedule(String schedule_Date, String route_Id) 
 	{
-
 		Session session = sessionFactory.openSession();
 		Transaction tr = session.beginTransaction();
-		Query query1=session.createQuery("from Route where route_Id=:route_Id");
-		query1.setParameter("route_Id", route_Id);
-		Route route=(Route) query1.uniqueResult();
-		Query query2=session.createQuery("from Schedule where schedule_Date=:schedule_Date and route=:route");
-		query2.setParameter("schedule_Date", schedule_Date);
-		query2.setParameter("route", route);
-		Schedule schedule=(Schedule) query2.uniqueResult();
-		Query query3 = session.createQuery("from Vehicle where vehicle_Id=:vehicle_Id ");
-		query3.setParameter("vehicle_Id", schedule.getVehicle());
-        List<Vehicle> vehicles=query3.getResultList();
-        tr.commit();
+		List<Vehicle> vehicles = session.createNativeQuery(schedule_Date, route_Id);
+		
 		return vehicles;
 	}
 
+	
 }

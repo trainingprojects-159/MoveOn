@@ -29,7 +29,7 @@ public class RouteServiceImpl implements RouteService {
 
 	}
 
-	public void removeRoute(int route_Id) {
+	public void removeRoute(String route_Id) {
 		routeDao.deleteRoute(route_Id);
 
 
@@ -40,7 +40,7 @@ public class RouteServiceImpl implements RouteService {
 	}
 
 	public List<Vehicle> getAllBySourceAndDestination(String source, String destination) {
-		return routeDao. getAllBySourceAndDestination(source,destination);
+		return routeDao.getAllBySourceAndDestination(source,destination);
 	}
 
 }

@@ -29,7 +29,7 @@ public class DriverServiceImpl implements DriverService {
 		
 	}
 
-	public void removeDriver(int driver_Id) {
+	public void removeDriver(String driver_Id) {
 		driverDao.deleteDriver(driver_Id);
 		
 	}
