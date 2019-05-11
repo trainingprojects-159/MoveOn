@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mphasis.moveon.daos.LocationDao;
+import com.mphasis.moveon.entities.Driver;
 import com.mphasis.moveon.entities.Location;
+import com.mphasis.moveon.exceptions.BusinessException;
 import com.mphasis.moveon.service.LocationService;
 
 
@@ -25,9 +27,19 @@ public class LocationServiceImpl implements LocationService {
 		locationDao.insertLocation(location);
 	}	
 	
-	public void removeLocation(String id) {
-		// TODO Auto-generated method stub
-		locationDao.deleteLocation(id);
+	public Location removeLocation(String id) throws BusinessException 
+	{
+		Location location = null;
+		if(location.getLocation_Id().equals(id))
+		{
+			location = locationDao.deleteLocation(id);
+
+		}
+		else
+		{
+			throw new BusinessException("Enter Driver ID is not present" + id);
+		}
+		return location;
 
 	}
 

@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mphasis.moveon.daos.VehicleDao;
+import com.mphasis.moveon.entities.Schedule;
 import com.mphasis.moveon.entities.Vehicle;
+import com.mphasis.moveon.exceptions.BusinessException;
 import com.mphasis.moveon.service.VehicleService;
 @Service
 public class VehicleServiceImpl implements VehicleService {
@@ -28,8 +30,18 @@ public class VehicleServiceImpl implements VehicleService {
 
 	}
 
-	public void removeVehicle(String vehicle_Id) {
-		vehicleDao.deleteVehicle(vehicle_Id);
+	public Vehicle removeVehicle(String vehicle_Id) throws BusinessException {
+		Vehicle vehicle = null;
+		if(vehicle.getVehicle_Id().equals(vehicle_Id))
+		{
+			vehicle = vehicleDao.deleteVehicle(vehicle_Id);
+		}
+		else
+		{
+			throw new BusinessException("Enter vehicleID is invalid" + vehicle_Id);
+		}
+		return vehicle;
+		
 
 	}
 

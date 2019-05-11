@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.mphasis.moveon.daos.PassengerDao;
 import com.mphasis.moveon.entities.Passenger;
+import com.mphasis.moveon.exceptions.BusinessException;
 import com.mphasis.moveon.service.PassengerService;
 
 @Service
@@ -29,7 +30,8 @@ public class PassengerServiceImpl implements PassengerService{
 		
 	}
 
-	public void removePassenger(String id_Proof) {
+	public void removePassenger(String id_Proof) throws BusinessException 
+	{
 		passengerDao.deletePassenger(id_Proof);
 		
 	}

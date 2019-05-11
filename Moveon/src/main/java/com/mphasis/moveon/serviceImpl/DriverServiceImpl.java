@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.mphasis.moveon.daos.DriverDao;
 import com.mphasis.moveon.entities.Driver;
+import com.mphasis.moveon.exceptions.BusinessException;
 import com.mphasis.moveon.service.DriverService;
 
 @Service
@@ -29,8 +30,20 @@ public class DriverServiceImpl implements DriverService {
 		
 	}
 
-	public void removeDriver(String driver_Id) {
-		driverDao.deleteDriver(driver_Id);
+	public Driver removeDriver(String driver_Id) throws BusinessException 
+	{
+		Driver driver = null;
+		if(driver.getDriver_Id().equals(driver_Id))
+		{
+			driver = driverDao.deleteDriver(driver_Id);
+
+		}
+		else
+		{
+			throw new BusinessException("Enter Driver ID is not present" + driver_Id);
+		}
+		return driver;
+		
 		
 	}
 
