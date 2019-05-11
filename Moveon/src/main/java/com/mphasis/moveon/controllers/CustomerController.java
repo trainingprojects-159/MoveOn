@@ -32,17 +32,23 @@ import com.mphasis.moveon.service.PassengerService;
 
 @RestController
 @RequestMapping("/customer")
-
 public class CustomerController 
 {
 
 	@Autowired
-
 	CustomerService customerService;
+	
+	@Autowired
+	PassengerService passengerService;
 	
 	public void setCustomerService(CustomerService customerService) {
 		this.customerService = customerService;
 	}
+	
+	public void setPassengerService(PassengerService passengerService) {
+		this.passengerService = passengerService;
+	}
+
 
 	@RequestMapping(value="/customer/register",method=RequestMethod.POST)
 	public void register(@RequestBody Customer customer) 
@@ -56,14 +62,7 @@ public class CustomerController
 		 this.customerService.loginService(email,password);
 	}
 
-	@Autowired
-
-	PassengerService passengerService;
 	
-	public void setPassengerService(PassengerService passengerService) {
-		this.passengerService = passengerService;
-	}
-
 	@RequestMapping(value="/passenger/add",method=RequestMethod.POST)
 	public void addPassenger(@RequestBody Passenger passenger) 
 	{

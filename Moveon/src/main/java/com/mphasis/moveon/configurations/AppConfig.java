@@ -8,8 +8,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.orm.hibernate4.HibernateTransactionManager;
-import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
+import org.springframework.orm.hibernate5.HibernateTransactionManager;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -77,20 +77,22 @@ public class AppConfig {
 		
 	}
 	
-
 	@Bean
-	public HibernateTransactionManager getHibernateTransactionManger(SessionFactory s) {
-		HibernateTransactionManager hibernateTransactionManager=new HibernateTransactionManager();
-		hibernateTransactionManager.setSessionFactory(s);
+	public HibernateTransactionManager getHibernateTransactionManager(SessionFactory sessionFactory)
+	{
+		HibernateTransactionManager hibernateTransactionManager = new HibernateTransactionManager();
+		hibernateTransactionManager.setSessionFactory(sessionFactory);
 		return hibernateTransactionManager;
 	}
+	
 	
 	@Bean
 	public WebMvcConfigurer corsConfigurer() {
 		return new WebMvcConfigurerAdapter() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/**").allowedMethods("HEAD","GET","POST","DELETE").allowedHeaders("Origin","X-Requested-With","Content-Type","Accept");
+				registry.addMapping("/**").allowedMethods("HEAD","GET","POST","PUT","DELETE")
+				.allowedHeaders("Origin","X-Requested-With","Content-Type","Accept");
 			}
 			
 
