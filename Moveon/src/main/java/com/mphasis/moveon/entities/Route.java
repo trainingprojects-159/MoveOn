@@ -1,6 +1,10 @@
 package com.mphasis.moveon.entities;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -33,18 +37,20 @@ public class Route
 	private int duration;
 	
 	@OneToOne
-	@JoinColumn(name="location_Id")
 	private Location location;
 	
-	@OneToMany
-	private Vehicle vehicle;
+	@OneToMany(mappedBy="route",cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	private List<Vehicle> vehicle;
 	
 	@ManyToOne
-	@JoinColumn(name="admin_Id")
 	private Admin admin;
 	
-	public void setVehicle(Vehicle vehicle) {
+	public void setVehicle(List<Vehicle> vehicle) {
 		this.vehicle = vehicle;
+	}
+
+	public List<Vehicle> getVehicle() {
+		return vehicle;
 	}
 
 	public Admin getAdmin() {
