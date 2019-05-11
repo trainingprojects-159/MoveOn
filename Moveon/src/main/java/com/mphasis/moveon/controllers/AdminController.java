@@ -9,12 +9,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mphasis.moveon.entities.Admin;
 import com.mphasis.moveon.entities.Driver;
 import com.mphasis.moveon.entities.Location;
 import com.mphasis.moveon.entities.Passenger;
 import com.mphasis.moveon.entities.Route;
 import com.mphasis.moveon.entities.Schedule;
 import com.mphasis.moveon.entities.Vehicle;
+import com.mphasis.moveon.exceptions.BusinessException;
 import com.mphasis.moveon.service.AdminService;
 import com.mphasis.moveon.service.DriverService;
 import com.mphasis.moveon.service.LocationService;
@@ -34,9 +36,9 @@ public class AdminController
 	}
 	
 	@RequestMapping(value="/admin/login",method=RequestMethod.POST)
-	public void login(@RequestBody String email,String password) 
+	public Admin login(@RequestBody String email,String password) throws BusinessException 
 	{
-		 this.adminService.login(email,password);
+		return this.adminService.login(email,password);
 	}
 	
 	@Autowired
@@ -47,20 +49,20 @@ public class AdminController
 		this.vehicleService = vehicleService;
 	}
 	
-	@RequestMapping(value="/admin/add",method=RequestMethod.POST)
+	@RequestMapping(value="/admin/vehicle/add",method=RequestMethod.POST)
 	public void addVehicle(@RequestBody Vehicle vehicle)
 	{
 		this.vehicleService.addVehicle(vehicle);
 	}
 	
-	@RequestMapping(value="/admin/edit",method=RequestMethod.PUT)
+	@RequestMapping(value="/admin/vehicle/edit",method=RequestMethod.PUT)
 	public void editVehicle(@RequestBody Vehicle vehicle)
 	{
 		this.vehicleService.editVehicle(vehicle);
 	}
 	
-	@RequestMapping(value="/admin/{vehicle_Id}",method=RequestMethod.DELETE)
-	public void removeVehicle(@PathVariable("vehicle_Id")String  vehicle_Id) 
+	@RequestMapping(value="/admin/vehicle/{vehicle_Id}",method=RequestMethod.DELETE)
+	public void removeVehicle(@PathVariable("vehicle_Id")String  vehicle_Id) throws BusinessException 
 
 	{
 		this.vehicleService.removeVehicle(vehicle_Id);
@@ -72,7 +74,7 @@ public class AdminController
 		return vehicleService.getAll();
 	}
 	
-	@RequestMapping(value="/vehicles/{vehicletype}",method=RequestMethod.GET)
+	@RequestMapping(value="/vehicle/{vehicletype}",method=RequestMethod.GET)
 	public List<Vehicle> listVehicleType(@PathVariable(name="vehicle_Type")String vehicle_Type)
 	{
 		return vehicleService.getAllByType(vehicle_Type);
@@ -85,20 +87,20 @@ public class AdminController
 		this.driverService = driverService;
 	}
 	
-	@RequestMapping(value="/admin/add",method=RequestMethod.POST)
+	@RequestMapping(value="/admin/driver/add",method=RequestMethod.POST)
 	public void addDriver(@RequestBody Driver driver)
 	{
 		this.driverService.addDriver(driver);
 	}
 	
-	@RequestMapping(value="/admin/edit",method=RequestMethod.PUT)
+	@RequestMapping(value="/admin/driver/edit",method=RequestMethod.PUT)
 	public void editDriver(@RequestBody Driver driver)
 	{
 		this.driverService.editDriver(driver);
 	}
 	
-	@RequestMapping(value="/admin/{driver_Id}",method=RequestMethod.DELETE)
-	public void removeDriver(@PathVariable("driver_Id")String  driver_Id) 
+	@RequestMapping(value="/admin/driver/{driver_Id}",method=RequestMethod.DELETE)
+	public void removeDriver(@PathVariable("driver_Id")String  driver_Id) throws BusinessException 
 
 	{
 		this.driverService.removeDriver(driver_Id);
@@ -117,20 +119,20 @@ public class AdminController
 		this.routeService = routeService;
 	}
 	
-	@RequestMapping(value="/admin/add",method=RequestMethod.POST)
+	@RequestMapping(value="/admin/route/add",method=RequestMethod.POST)
 	public void addRoute(@RequestBody Route route)
 	{
 		this.routeService.addRoute(route);
 	}
 	
-	@RequestMapping(value="/admin/edit",method=RequestMethod.PUT)
+	@RequestMapping(value="/admin/route/edit",method=RequestMethod.PUT)
 	public void editRoute(@RequestBody Route route)
 	{
 		this.routeService.editRoute(route);
 	}
 	
-	@RequestMapping(value="/admin/{route_Id}",method=RequestMethod.DELETE)
-	public void removeRoute(@PathVariable("route_Id")String  route_Id) 
+	@RequestMapping(value="/admin/route/{route_Id}",method=RequestMethod.DELETE)
+	public void removeRoute(@PathVariable("route_Id")String  route_Id) throws BusinessException 
 
 	{
 		this.routeService.removeRoute(route_Id);
@@ -155,20 +157,20 @@ public class AdminController
 		this.locationService = locationService;
 	}
 
-	@RequestMapping(value="/admin/add",method=RequestMethod.POST)
+	@RequestMapping(value="/admin/location/add",method=RequestMethod.POST)
 	public void addLocation(@RequestBody Location location)
 	{
 		this.locationService.addLocation(location);
 	}
 	
-	@RequestMapping(value="/admin/edit",method=RequestMethod.PUT)
+	@RequestMapping(value="/admin/location/edit",method=RequestMethod.PUT)
 	public void editLocation(@RequestBody Location location)
 	{
 		this.locationService.editLocation(location);
 	}
 	
-	@RequestMapping(value="/admin/{location_Id}",method=RequestMethod.DELETE)
-	public void removeLocation(@PathVariable("location_Id")String  location_Id) 
+	@RequestMapping(value="/admin/location/{location_Id}",method=RequestMethod.DELETE)
+	public void removeLocation(@PathVariable("location_Id")String  location_Id) throws BusinessException 
 
 	{
 		this.locationService.removeLocation(location_Id);
@@ -188,14 +190,14 @@ public class AdminController
 		this.scheduleService = scheduleService;
 	}
 	
-	@RequestMapping(value="/admin/add",method=RequestMethod.POST)
+	@RequestMapping(value="/admin/schedule/add",method=RequestMethod.POST)
 	public void addSchedule(@RequestBody Schedule schedule)
 	{
 		this.scheduleService.addSchedule(schedule);
 	}
 	
-	@RequestMapping(value="/admin/{schedule_Id}",method=RequestMethod.DELETE)
-	public void removeSchedule(@PathVariable("schedule_Id")String  schedule_Id) 
+	@RequestMapping(value="/admin/schedule/{schedule_Id}",method=RequestMethod.DELETE)
+	public void removeSchedule(@PathVariable("schedule_Id")String  schedule_Id) throws BusinessException 
 
 	{
 		this.scheduleService.removeSchedule(schedule_Id);

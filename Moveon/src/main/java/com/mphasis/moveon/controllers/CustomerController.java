@@ -23,7 +23,7 @@ import com.mphasis.moveon.entities.Booking_Details;
 import com.mphasis.moveon.entities.Customer;
 
 import com.mphasis.moveon.entities.Passenger;
-
+import com.mphasis.moveon.exceptions.BusinessException;
 import com.mphasis.moveon.service.Booking_DetailsService;
 
 import com.mphasis.moveon.service.CustomerService;
@@ -51,32 +51,32 @@ public class CustomerController
 
 
 	@RequestMapping(value="/customer/register",method=RequestMethod.POST)
-	public void register(@RequestBody Customer customer) 
+	public void register(@RequestBody Customer customer) throws BusinessException 
 	{
 		 this.customerService.registerService(customer);
 	}
 
 	@RequestMapping(value="/customer/login",method=RequestMethod.POST)
-	public void login(@RequestBody String email,String password) 
+	public void login(@RequestBody String email,String password) throws BusinessException 
 	{
 		 this.customerService.loginService(email,password);
 	}
 
 	
-	@RequestMapping(value="/passenger/add",method=RequestMethod.POST)
+	@RequestMapping(value="customer/passenger/add",method=RequestMethod.POST)
 	public void addPassenger(@RequestBody Passenger passenger) 
 	{
 		 this.passengerService.addPassenger(passenger);
 	}
 
-	@RequestMapping(value="/passenger/edit",method=RequestMethod.PUT)
+	@RequestMapping(value="customer/passenger/edit",method=RequestMethod.PUT)
 	public void editPassenger(@RequestBody Passenger passenger) 
 	{
 		 this.passengerService.editPassenger(passenger);
 	}
 
-	@RequestMapping(value="/passenger/{id_Proof}",method=RequestMethod.DELETE)
-	public void removeCar(@PathVariable("id_Proof")String  id_Proof) 
+	@RequestMapping(value="customer/passenger/{id_Proof}",method=RequestMethod.DELETE)
+	public void removeCar(@PathVariable("id_Proof")String  id_Proof) throws BusinessException 
 
 	{
 		this.passengerService.removePassenger(id_Proof);
@@ -96,20 +96,20 @@ public class CustomerController
 		this.booking_DetailsService = booking_DetailsService;
 	}
 
-	@RequestMapping(value="/booking_Details/book_Ticket",method=RequestMethod.POST)
-    public void  book_Ticket(@RequestBody Booking_Details booking_Details) 
+	@RequestMapping(value="customer/booking_Details/book_Ticket",method=RequestMethod.POST)
+    public void  book_Ticket(@RequestBody Booking_Details booking_Details) throws BusinessException 
 	{
 		this.booking_DetailsService.bookTicket(booking_Details);
 	}
 	
-	@RequestMapping(value="/booking_Details/removeBooking_Id",method=RequestMethod.DELETE)
-	public void removeBooking_Id(@PathVariable("booking_Id")String booking_Id)
+	@RequestMapping(value="customer/booking_Details/removeBooking_Id",method=RequestMethod.DELETE)
+	public void removeBooking_Id(@PathVariable("booking_Id")String booking_Id) throws BusinessException
 	{
 		this.booking_DetailsService.removeBooking_Id(booking_Id);
 	}
 	
-	@RequestMapping(value="/booking_Details/getByBooking_Id",method=RequestMethod.GET)
-	public void getByBooking_Id(@PathVariable("booking_Id")String booking_Id)
+	@RequestMapping(value="customer/booking_Details/getByBooking_Id",method=RequestMethod.GET)
+	public void getByBooking_Id(@PathVariable("booking_Id")String booking_Id) throws BusinessException
 	{
 		this.booking_DetailsService.getByBooking_Id(booking_Id);
 	}
