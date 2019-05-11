@@ -2,7 +2,9 @@ package com.mphasis.moveon.entities;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,6 +13,8 @@ import javax.persistence.OneToMany;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mphasis.moveon.util.StringPrefixedSequenceIdGenerator;
 
 
@@ -36,16 +40,21 @@ public class Customer
 	private long contact_Num;
 	private String address;
 	
-	@OneToMany
+	@OneToMany(mappedBy="customer",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
+	@JsonIgnore
 	List<Passenger> passenger;
 	
-	@OneToMany
-	private Booking_Details booking_Details;
+	@OneToMany(mappedBy="customer",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
+	@JsonIgnore
+	private List<Booking_Details> booking_Details;
 	
 	
 	
-	public void setBooking_Details(Booking_Details booking_Details) {
+	public void setBooking_Details(List<Booking_Details> booking_Details) {
 		this.booking_Details = booking_Details;
+	}
+	public List<Booking_Details> getBooking_Details() {
+		return booking_Details;
 	}
 	public List<Passenger> getPassenger() {
 		return passenger;

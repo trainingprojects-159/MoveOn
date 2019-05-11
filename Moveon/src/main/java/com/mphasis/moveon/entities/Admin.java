@@ -2,17 +2,22 @@ package com.mphasis.moveon.entities;
 
 import java.util.List;
 
-
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mphasis.moveon.util.StringPrefixedSequenceIdGenerator;
 
 @Entity
@@ -29,31 +34,32 @@ public class Admin
 		            @Parameter(name = StringPrefixedSequenceIdGenerator.NUMBER_FORMAT_PARAMETER, value = "%03d") })
 	private String admin_Id;
 	private String admin_name;
+	@Column(unique=true)
 	private String email;
 	private String password; 
 	
 	
-	@OneToMany
+	@OneToMany(mappedBy="admin",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
+	@JsonIgnore
 	private List<Route> route;
 	
-	@OneToMany
+	@OneToMany(mappedBy="admin",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
+	@JsonIgnore
 	private List<Vehicle> vehicle;
 	
 	
-	@OneToMany
+	@OneToMany(mappedBy="admin",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
+	@JsonIgnore
 	private List<Driver> driver;
 	
-	@OneToMany
+	@OneToMany(mappedBy="admin",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
+	@JsonIgnore
 	private List<Location> location;
 	
-	@OneToMany
+	@OneToMany(mappedBy="admin",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
+	@JsonIgnore
 	private List<Schedule> schedule;
-	
-	@OneToMany
-	private List<Booking_Details> booking_details;
-	
-	
-	
+
 	
 	public String getAdmin_Id() {
 		return admin_Id;
@@ -109,7 +115,5 @@ public class Admin
 	public void setRoute(List<Route> route) {
 		this.route = route;
 	}
-	public void setBooking_details(List<Booking_Details> booking_details) {
-		this.booking_details = booking_details;
-	}
+	
 }

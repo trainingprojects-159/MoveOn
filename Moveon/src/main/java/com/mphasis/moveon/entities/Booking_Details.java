@@ -28,11 +28,9 @@ public class Booking_Details
 	private String booking_Id;
 	
 	@ManyToOne
-	@JoinColumn(name="customer_Id")
 	private Customer customer;
 	
 	@ManyToOne
-	@JoinColumn(name="admin_Id")
 	private Admin admin;
 	
 	
@@ -59,11 +57,11 @@ public class Booking_Details
 	
 	
 	@OneToOne
-	@JoinColumn(name="route_Id")
+	//@JoinColumn(name="route_Id")
 	private Route route;
 	
 	@OneToOne
-	@JoinColumn(name="vehicle_Id")
+	//@JoinColumn(name="vehicle_Id")
 	private Vehicle vehicle;
 
 

@@ -2,7 +2,7 @@ package com.mphasis.moveon.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -20,7 +20,6 @@ public class Passenger
 	private String journey_Date;
 	
 	@ManyToOne
-	@JoinColumn(name="customer_Id")
 	private Customer customer;
 	
 	public Customer getCustomer() {

@@ -28,15 +28,12 @@ public class Schedule
 	private String schedule_Id;
 	
 	@ManyToOne
-	@JoinColumn(name="admin_Id")
 	private Admin admin;
 	
 	@OneToOne
-	@JoinColumn(name="vehicle_Id")
 	private Vehicle vehicle;
 	
 	@OneToOne
-	@JoinColumn(name="route_Id")
 	private Route route;
 	
 	private String schedule_Date;

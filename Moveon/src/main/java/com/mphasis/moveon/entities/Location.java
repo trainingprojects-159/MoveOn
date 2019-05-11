@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
@@ -36,7 +36,6 @@ public class Location {
 		return admin;
 	}
 	@ManyToOne
-	@JoinColumn(name="admin_Id")
 	private Admin admin;
 
 	public void setAdmin(Admin admin) {

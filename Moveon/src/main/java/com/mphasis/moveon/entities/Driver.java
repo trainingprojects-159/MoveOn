@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
@@ -26,20 +25,15 @@ public class Driver
 		            @Parameter(name = StringPrefixedSequenceIdGenerator.VALUE_PREFIX_PARAMETER, value = "DR"),
 		            @Parameter(name = StringPrefixedSequenceIdGenerator.NUMBER_FORMAT_PARAMETER, value = "%03d") })
 	private String driver_Id;
-	
-	@ManyToOne
-	@JoinColumn(name="admin_Id")
-	private Admin admin;
-	
 	private String driver_Name;
 	private String license_Num;
 	private long contact_Num;
+	@ManyToOne
+	private Admin admin;
 	@OneToOne
-	@JoinColumn(name="vehicle_Id")
 	private Vehicle vehicle;
 	
 	@OneToOne
-	@JoinColumn(name="schedule_Id")
 	private Schedule schedule;
 
 	public String getDriver_Id() {
