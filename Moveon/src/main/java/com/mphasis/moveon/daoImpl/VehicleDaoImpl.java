@@ -45,12 +45,13 @@ public class VehicleDaoImpl implements VehicleDao {
 
 	}
 
-	public void deleteVehicle(String vehicle_Id) {
+	public Vehicle deleteVehicle(String vehicle_Id) {
 		Session session=sessionFactory.openSession();
 		Transaction tr=session.beginTransaction();
 		Vehicle vehicle=session.get(Vehicle.class,vehicle_Id);
 		session.delete(vehicle);
 		tr.commit();
+		return vehicle;
 
 	}
 

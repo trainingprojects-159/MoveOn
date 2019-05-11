@@ -2,12 +2,14 @@ package com.mphasis.moveon.daoImpl;
 
 import java.util.List;
 
+
 import javax.persistence.TypedQuery;
 
-import org.hibernate.Query;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.NativeQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -36,13 +38,14 @@ public class ScheduleDaoImpl implements ScheduleDao
 		tr.commit();
 	}
 
-	public void deleteSchedule(String schedule_Id) 
+	public Schedule deleteSchedule(String schedule_Id) 
 	{
 		Session session = sessionFactory.openSession();
 		Transaction tr = session.beginTransaction();
 		Schedule sc = (Schedule) session.get(Schedule.class, schedule_Id);
 		session.delete(sc);
 		tr.commit();
+		return sc;
 	}
 
 	public List<Schedule> getAll() 
@@ -58,8 +61,14 @@ public class ScheduleDaoImpl implements ScheduleDao
 	{
 		Session session = sessionFactory.openSession();
 		Transaction tr = session.beginTransaction();
-		List<Vehicle> vehicles = session.createNativeQuery(schedule_Date, route_Id);
-		
+		//TypedQuery<Vehicle> query = session.createNativeQuery("");
+		//List<Vehicle> vehicles=query.getResultList();
+		NativeQuery<Vehicle> nativeQuery = session.createNativeQuery("select * from vehicle where vehicle_Id in"
+				                 + "(select vehicle_Id from schedule where schedule_Date=:schedule_Date and route_Id=:)"
+				                 + "(select * from route where route_Id=:route_Id)");
+		nativeQuery.setParameter("route_Id", route_Id);
+		nativeQuery.setParameter("schedule_Date", schedule_Date);
+		List<Vehicle> vehicles=nativeQuery.getResultList();
 		return vehicles;
 	}
 

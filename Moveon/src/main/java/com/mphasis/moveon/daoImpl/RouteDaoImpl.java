@@ -41,12 +41,13 @@ public class RouteDaoImpl implements RouteDao {
 
 	}
 
-	public void deleteRoute(String route_Id) {
+	public Route deleteRoute(String route_Id) {
 		Session session=sessionFactory.openSession();
 		Transaction tr=session.beginTransaction();
 		Route route=session.get(Route.class,route_Id);
 		session.delete(route);
 		tr.commit();
+		return route;
 
 	}
 
@@ -63,7 +64,7 @@ public class RouteDaoImpl implements RouteDao {
 		TypedQuery<Vehicle> query1=session.createSQLQuery("select vehicle_Id,vehicle_Name,vehicle_Type,seat_Capacity,vehicle_Num,fare where vehicle_Id = (select vehicle_Id from schedule where route_id = (select route_id from route where source=:source and destination=:destination");
 		query1.setParameter("source", source);
 		query1.setParameter("destination", destination);
-       List<Vehicle> vehicle=query1.getResultList();
+        List<Vehicle> vehicle=query1.getResultList();
         tr.commit();
 		return vehicle;
 	}

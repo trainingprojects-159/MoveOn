@@ -40,12 +40,13 @@ public class LocationDaoImpl implements LocationDao {
 		
 	}
 
-	public void deleteLocation(int location_Id) {
+	public Location deleteLocation(String location_Id) {
 		Session session=sessionFactory.openSession();
 		Transaction tr=session.beginTransaction();
 		Location location=session.get(Location.class, location_Id);
 		session.delete(location);
 		tr.commit();
+		return location;
 	}
 
 	public List<Location> getAll() {

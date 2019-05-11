@@ -40,12 +40,13 @@ public class DriverDaoImpl implements DriverDao {
 		
 	}
 
-	public void deleteDriver(int driver_Id) {
+	public Driver deleteDriver(String driver_Id) {
 		Session session=sessionFactory.openSession();
 		Transaction tr=session.beginTransaction();
 		Driver driver=session.get(Driver.class, driver_Id);
 		session.delete(driver);
 		tr.commit();
+		return driver;
 	}
 
 	public List<Driver> getAll() {
@@ -55,6 +56,8 @@ public class DriverDaoImpl implements DriverDao {
 		tr.commit();
 		return drivers;
 	}
+
+	
 	
 	
 

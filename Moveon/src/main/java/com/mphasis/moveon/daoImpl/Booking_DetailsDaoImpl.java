@@ -2,6 +2,8 @@ package com.mphasis.moveon.daoImpl;
 
 import java.util.List;
 
+import javax.persistence.TypedQuery;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -34,12 +36,14 @@ public class Booking_DetailsDaoImpl implements Booking_DetailsDao
 	{
 		Session session = sessionFactory.openSession();
 		Transaction tr = session.beginTransaction();
-		Booking_Details book_details = (Booking_Details) session.createQuery("from Booking_Details",Booking_Details.class, booking_Id);
+		TypedQuery<Booking_Details> query=session.createQuery("from Booking_Details where booking_Id=:booking_Id",Booking_Details.class);
+		query.setParameter("booking_Id", booking_Id);
+		Booking_Details book_details = query.getSingleResult();
 		tr.commit();
 		return book_details;
 	}
 
-	public void cancelByBooking_Id(String booking_Id) 
+	public Booking_Details cancelByBooking_Id(String booking_Id) 
 	{
 		Session session = sessionFactory.openSession();
 		Transaction tr = session.beginTransaction();
@@ -47,6 +51,7 @@ public class Booking_DetailsDaoImpl implements Booking_DetailsDao
 		bookdet.setStatus("canceled");
 		session.update(bookdet);
 		tr.commit();
+		return bookdet;
 		
 		
 	}
