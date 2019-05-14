@@ -46,8 +46,8 @@ public class RouteServiceImpl implements RouteService {
 
 	}
 
-	public List<Route> getAll() {
-		return  routeDao.getAll();
+	public List<Route> getAllRoute() {
+		return  routeDao.getAllRoute();
 	}
 
 	public List<Vehicle> getAllBySourceAndDestination(String source, String destination) {

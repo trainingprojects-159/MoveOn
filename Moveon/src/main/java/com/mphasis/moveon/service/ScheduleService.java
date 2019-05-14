@@ -9,7 +9,7 @@ public interface ScheduleService
 {
 	public void addSchedule(Schedule schedule);
 	public Schedule removeSchedule(String schedule_Id) throws BusinessException;
-	public List<Schedule> getAll();
+	public List<Schedule> getAllSchedule();
 	
 	
 

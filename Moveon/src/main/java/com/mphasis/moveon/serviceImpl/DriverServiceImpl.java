@@ -47,9 +47,9 @@ public class DriverServiceImpl implements DriverService {
 		
 	}
 
-	public List<Driver> getAll() {
+	public List<Driver> getAllDriver() {
 		
-		return driverDao.getAll();
+		return driverDao.getAllDriver();
 	}
 
 }

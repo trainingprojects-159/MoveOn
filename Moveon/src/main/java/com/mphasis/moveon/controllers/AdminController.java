@@ -3,6 +3,7 @@ package com.mphasis.moveon.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,8 +36,8 @@ public class AdminController
 		this.adminService = adminService;
 	}
 	
-	@RequestMapping(value="/admin/login",method=RequestMethod.POST)
-	public Admin login(@RequestBody String email,String password) throws BusinessException 
+	@RequestMapping(value="/login/{email}/{password}",method=RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
+	public Admin login(@PathVariable("email") String email, @PathVariable("password") String password) throws BusinessException 
 	{
 		return this.adminService.login(email,password);
 	}
@@ -49,32 +50,32 @@ public class AdminController
 		this.vehicleService = vehicleService;
 	}
 	
-	@RequestMapping(value="/admin/vehicle/add",method=RequestMethod.POST)
+	@RequestMapping(value="/vehicle/add",method=RequestMethod.POST,produces=MediaType.APPLICATION_JSON_VALUE)
 	public void addVehicle(@RequestBody Vehicle vehicle)
 	{
 		this.vehicleService.addVehicle(vehicle);
 	}
 	
-	@RequestMapping(value="/admin/vehicle/edit",method=RequestMethod.PUT)
+	@RequestMapping(value="/vehicle/edit",method=RequestMethod.PUT,produces=MediaType.APPLICATION_JSON_VALUE)
 	public void editVehicle(@RequestBody Vehicle vehicle)
 	{
 		this.vehicleService.editVehicle(vehicle);
 	}
 	
-	@RequestMapping(value="/admin/vehicle/{vehicle_Id}",method=RequestMethod.DELETE)
+	@RequestMapping(value="/vehicle/{vehicle_Id}",method=RequestMethod.DELETE,produces=MediaType.APPLICATION_JSON_VALUE)
 	public void removeVehicle(@PathVariable("vehicle_Id")String  vehicle_Id) throws BusinessException 
 
 	{
 		this.vehicleService.removeVehicle(vehicle_Id);
 	}
 	
-	@RequestMapping(value="/vehicles",method=RequestMethod.GET)
+	@RequestMapping(value="/vehicles",method=RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
 	public List<Vehicle> listVehicle()
 	{
-		return vehicleService.getAll();
+		return vehicleService.getAllVehicles();
 	}
 	
-	@RequestMapping(value="/vehicle/{vehicletype}",method=RequestMethod.GET)
+	@RequestMapping(value="/vehicle/{vehicle_Type}",method=RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
 	public List<Vehicle> listVehicleType(@PathVariable(name="vehicle_Type")String vehicle_Type)
 	{
 		return vehicleService.getAllByType(vehicle_Type);
@@ -87,29 +88,29 @@ public class AdminController
 		this.driverService = driverService;
 	}
 	
-	@RequestMapping(value="/admin/driver/add",method=RequestMethod.POST)
+	@RequestMapping(value="/driver/add",method=RequestMethod.POST,produces=MediaType.APPLICATION_JSON_VALUE)
 	public void addDriver(@RequestBody Driver driver)
 	{
 		this.driverService.addDriver(driver);
 	}
 	
-	@RequestMapping(value="/admin/driver/edit",method=RequestMethod.PUT)
+	@RequestMapping(value="/driver/edit",method=RequestMethod.PUT,produces=MediaType.APPLICATION_JSON_VALUE)
 	public void editDriver(@RequestBody Driver driver)
 	{
 		this.driverService.editDriver(driver);
 	}
 	
-	@RequestMapping(value="/admin/driver/{driver_Id}",method=RequestMethod.DELETE)
+	@RequestMapping(value="/driver/{driver_Id}",method=RequestMethod.DELETE,produces=MediaType.APPLICATION_JSON_VALUE)
 	public void removeDriver(@PathVariable("driver_Id")String  driver_Id) throws BusinessException 
 
 	{
 		this.driverService.removeDriver(driver_Id);
 	}
 	
-	@RequestMapping(value="/drivers",method=RequestMethod.GET)
+	@RequestMapping(value="/drivers",method=RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
 	public List<Driver> listDriver()
 	{
-		return driverService.getAll();
+		return driverService.getAllDriver();
 	}
 	
 	@Autowired
@@ -119,32 +120,32 @@ public class AdminController
 		this.routeService = routeService;
 	}
 	
-	@RequestMapping(value="/admin/route/add",method=RequestMethod.POST)
+	@RequestMapping(value="/route/add",method=RequestMethod.POST,produces=MediaType.APPLICATION_JSON_VALUE)
 	public void addRoute(@RequestBody Route route)
 	{
 		this.routeService.addRoute(route);
 	}
 	
-	@RequestMapping(value="/admin/route/edit",method=RequestMethod.PUT)
+	@RequestMapping(value="/route/edit",method=RequestMethod.PUT,produces=MediaType.APPLICATION_JSON_VALUE)
 	public void editRoute(@RequestBody Route route)
 	{
 		this.routeService.editRoute(route);
 	}
 	
-	@RequestMapping(value="/admin/route/{route_Id}",method=RequestMethod.DELETE)
+	@RequestMapping(value="/route/{route_Id}",method=RequestMethod.DELETE,produces=MediaType.APPLICATION_JSON_VALUE)
 	public void removeRoute(@PathVariable("route_Id")String  route_Id) throws BusinessException 
 
 	{
 		this.routeService.removeRoute(route_Id);
 	}
 
-	@RequestMapping(value="/routes",method=RequestMethod.GET)
+	@RequestMapping(value="/routes",method=RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
 	public List<Route> listRoute()
 	{
-		return routeService.getAll();
+		return routeService.getAllRoute();
 	}
 	
-	@RequestMapping(value="/route/{source}/{destination}",method=RequestMethod.GET)
+	@RequestMapping(value="/routes/search/{source}/{destination}",method=RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
 	public List<Vehicle> listRoutes(@PathVariable("source")String source,@PathVariable("destination")String destination)
 	{
 		return routeService.getAllBySourceAndDestination(source, destination);
@@ -157,19 +158,19 @@ public class AdminController
 		this.locationService = locationService;
 	}
 
-	@RequestMapping(value="/admin/location/add",method=RequestMethod.POST)
+	@RequestMapping(value="/location/add",method=RequestMethod.POST,produces=MediaType.APPLICATION_JSON_VALUE)
 	public void addLocation(@RequestBody Location location)
 	{
 		this.locationService.addLocation(location);
 	}
 	
-	@RequestMapping(value="/admin/location/edit",method=RequestMethod.PUT)
+	@RequestMapping(value="/location/edit",method=RequestMethod.PUT,produces=MediaType.APPLICATION_JSON_VALUE)
 	public void editLocation(@RequestBody Location location)
 	{
 		this.locationService.editLocation(location);
 	}
 	
-	@RequestMapping(value="/admin/location/{location_Id}",method=RequestMethod.DELETE)
+	@RequestMapping(value="/location/{location_Id}",method=RequestMethod.DELETE,produces=MediaType.APPLICATION_JSON_VALUE)
 	public void removeLocation(@PathVariable("location_Id")String  location_Id) throws BusinessException 
 
 	{
@@ -177,7 +178,7 @@ public class AdminController
 	}
 	
 
-	@RequestMapping(value="/locations",method=RequestMethod.GET)
+	@RequestMapping(value="/locations",method=RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
 	public List<Location> listLocation()
 	{
 		return locationService.getLocations();
@@ -190,23 +191,23 @@ public class AdminController
 		this.scheduleService = scheduleService;
 	}
 	
-	@RequestMapping(value="/admin/schedule/add",method=RequestMethod.POST)
+	@RequestMapping(value="/schedule/add",method=RequestMethod.POST,produces=MediaType.APPLICATION_JSON_VALUE)
 	public void addSchedule(@RequestBody Schedule schedule)
 	{
 		this.scheduleService.addSchedule(schedule);
 	}
 	
-	@RequestMapping(value="/admin/schedule/{schedule_Id}",method=RequestMethod.DELETE)
+	@RequestMapping(value="/schedule/{schedule_Id}",method=RequestMethod.DELETE,produces=MediaType.APPLICATION_JSON_VALUE)
 	public void removeSchedule(@PathVariable("schedule_Id")String  schedule_Id) throws BusinessException 
 
 	{
 		this.scheduleService.removeSchedule(schedule_Id);
 	}
 	
-	@RequestMapping(value="/schedules",method=RequestMethod.GET)
+	@RequestMapping(value="/schedules",method=RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
 	public List<Schedule> listSchedule()
 	{
-		return scheduleService.getAll();
+		return scheduleService.getAllSchedule();
 	}
 
 	

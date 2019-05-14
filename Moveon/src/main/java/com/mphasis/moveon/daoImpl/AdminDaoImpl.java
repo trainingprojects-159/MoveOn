@@ -3,6 +3,7 @@ package com.mphasis.moveon.daoImpl;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
 
 import org.hibernate.NonUniqueResultException;
 import org.hibernate.Session;
@@ -15,6 +16,7 @@ import com.mphasis.moveon.daos.AdminDao;
 import com.mphasis.moveon.entities.Admin;
 
 @Repository
+@Transactional
 public class AdminDaoImpl implements AdminDao {
 @Autowired
 SessionFactory sessionFactory;

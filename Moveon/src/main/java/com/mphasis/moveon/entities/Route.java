@@ -31,8 +31,10 @@ public class Route
 		            @Parameter(name = StringPrefixedSequenceIdGenerator.VALUE_PREFIX_PARAMETER, value = "RO"),
 		            @Parameter(name = StringPrefixedSequenceIdGenerator.NUMBER_FORMAT_PARAMETER, value = "%03d") })
 	private String route_Id;
-	private String source;
-	private String destination;
+	@ManyToOne
+	private Location source;
+	@ManyToOne
+	private Location destination;
 	private int distance;
 	private int duration;
 	
@@ -68,18 +70,23 @@ public class Route
 		this.route_Id = route_Id;
 	}
 	
-	public String getSource() {
+	
+	public Location getSource() {
 		return source;
 	}
-	public void setSource(String source) {
+
+	public void setSource(Location source) {
 		this.source = source;
 	}
-	public String getDestination() {
+
+	public Location getDestination() {
 		return destination;
 	}
-	public void setDestination(String destination) {
+
+	public void setDestination(Location destination) {
 		this.destination = destination;
 	}
+
 	public int getDistance() {
 		return distance;
 	}

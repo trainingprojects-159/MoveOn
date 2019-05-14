@@ -49,7 +49,7 @@ public class DriverDaoImpl implements DriverDao {
 		return driver;
 	}
 
-	public List<Driver> getAll() {
+	public List<Driver> getAllDriver() {
 		Session session=sessionFactory.openSession();
 		Transaction tr=session.beginTransaction();
 		List<Driver> drivers=session.createQuery("from Driver",Driver.class).list();

@@ -9,6 +9,6 @@ public interface VehicleService {
 	 public void addVehicle(Vehicle vehicle);
 	    public void editVehicle(Vehicle vehicle);
 	    public Vehicle removeVehicle(String vehicle_Id) throws BusinessException;
-	    public List<Vehicle> getAll();
+	    public List<Vehicle> getAllVehicles();
 	    public List<Vehicle> getAllByType(String vehicle_Type);
 }

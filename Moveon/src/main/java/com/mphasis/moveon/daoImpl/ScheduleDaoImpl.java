@@ -48,7 +48,7 @@ public class ScheduleDaoImpl implements ScheduleDao
 		return sc;
 	}
 
-	public List<Schedule> getAll() 
+	public List<Schedule> getAllSchedule() 
 	{
 		Session session = sessionFactory.openSession();
 		Transaction tr = session.beginTransaction();

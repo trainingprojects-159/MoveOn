@@ -10,6 +10,6 @@ public interface ScheduleDao
 {
 	public void insertSchedule(Schedule schedule);
 	public Schedule deleteSchedule(String schedule_Id) throws BusinessException;
-	public List<Schedule> getAll();
+	public List<Schedule> getAllSchedule();
 	public List<Vehicle> getByRouteSchedule(String schedule_Date,String route_Id) throws BusinessException;
 }

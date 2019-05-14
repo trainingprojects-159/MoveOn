@@ -10,6 +10,6 @@ public interface DriverDao
 	public void insertDriver(Driver driver);
 	public void updateDriver(Driver driver);
 	public Driver deleteDriver(String driver_Id) throws BusinessException;
-	public List<Driver> getAll();
+	public List<Driver> getAllDriver();
 
 }

@@ -55,7 +55,7 @@ public class VehicleDaoImpl implements VehicleDao {
 
 	}
 
-	public List<Vehicle> getAll() {
+	public List<Vehicle> getAllVehicles() {
 		Session session=sessionFactory.openSession();
 		Transaction tr=session.beginTransaction();
 		List<Vehicle> vehicles=session.createQuery("from Vehicle",Vehicle.class).list();

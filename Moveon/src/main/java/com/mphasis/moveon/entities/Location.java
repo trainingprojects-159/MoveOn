@@ -27,9 +27,9 @@ public class Location {
 	private String location_Id;
 	private String location_Name;
 	
-	@OneToOne
+	/*@OneToOne
 	private Route route;
-	
+	*/
 
 
 	public Admin getAdmin() {
@@ -54,12 +54,12 @@ public class Location {
 	public void setLocation_Name(String location_Name) {
 		this.location_Name = location_Name;
 	}
-	public Route getRoute() {
+	/*public Route getRoute() {
 		return route;
 	}
 
 	public void setRoute(Route route) {
 		this.route = route;
-	}
+	}*/
 
 }

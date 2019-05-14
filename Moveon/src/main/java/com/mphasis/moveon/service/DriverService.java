@@ -9,6 +9,6 @@ public interface DriverService {
 	public void addDriver(Driver driver);
 	public void editDriver(Driver driver);
 	public Driver removeDriver(String driver_Id) throws BusinessException;
-	public List<Driver> getAll();
+	public List<Driver> getAllDriver();
 
 }

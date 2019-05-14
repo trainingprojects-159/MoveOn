@@ -44,10 +44,10 @@ public class ScheduleServiceImpl implements ScheduleService
 
 	}
 
-	public List<Schedule> getAll() 
+	public List<Schedule> getAllSchedule() 
 	{
 		
-		return scheduleDao.getAll();
+		return scheduleDao.getAllSchedule();
 	}
 
 	

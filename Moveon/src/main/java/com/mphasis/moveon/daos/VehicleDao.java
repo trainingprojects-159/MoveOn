@@ -10,6 +10,6 @@ public interface VehicleDao
     public void insertVehicle(Vehicle vehicle);
     public void updateVehicle(Vehicle vehicle);
     public Vehicle deleteVehicle(String vehicle_Id) throws BusinessException;
-    public List<Vehicle> getAll();
+    public List<Vehicle> getAllVehicles();
     public List<Vehicle> getAllByType(String vehicle_Type);
 }

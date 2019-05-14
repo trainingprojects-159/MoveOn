@@ -11,6 +11,7 @@ public interface RouteDao
 	public void insertRoute(Route route);
 	public void updateRoute(Route route);
 	public Route deleteRoute(String route_Id) throws BusinessException;
-    public List<Route> getAll();
+    public List<Route> getAllRoute();
     public List<Vehicle> getAllBySourceAndDestination(String source,String destination);
 }
+	

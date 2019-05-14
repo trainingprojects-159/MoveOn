@@ -45,8 +45,8 @@ public class VehicleServiceImpl implements VehicleService {
 
 	}
 
-	public List<Vehicle> getAll() {
-		return  vehicleDao.getAll();
+	public List<Vehicle> getAllVehicles() {
+		return  vehicleDao.getAllVehicles();
 	}
 
 	public List<Vehicle> getAllByType(String vehicle_Type) {
